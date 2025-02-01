@@ -1,0 +1,63 @@
+body {
+    font-family: Garamond, serif;
+  }
+#color {
+    background:#4ca1af; 
+    margin: 0px;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin: 10px;
+    /* box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); */
+}
+#div{
+    text-align: center;
+    padding: 20px;
+    font-size: 24px;
+    border:50px ;
+    margin: 30px;
+
+}
+#div1{
+    display: flex;
+    
+}
+#div button:hover{
+     background-color: Red;
+     padding: auto;
+}
+#div2{
+    /* border: 2px solid rgb(14, 250, 250); */
+    width: 150px;
+    text-align: center;
+    color: White;
+    background-color:#4ca1af;
+    margin: 10px;
+  
+  
+    
+}
+#create {
+    padding: 10px;
+}
+#create1{
+    padding: 10px;
+}
+#create:hover{
+ color: aqua;
+    border-radius: 0px;
+}
+
+#create1:hover{
+    color: aqua;
+    border-radius: 0px;
+}
+
+#div3{
+    margin: auto;
+}
+
+
+
+
+
