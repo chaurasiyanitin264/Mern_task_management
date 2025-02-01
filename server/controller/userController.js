@@ -79,5 +79,6 @@ module.exports = {
     userLogin,
     UserTaskdisplay,
     UserTaskSubmit,
+    // ChangePassword
     ChangePassword
 }
