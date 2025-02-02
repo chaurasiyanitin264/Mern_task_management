@@ -88,7 +88,7 @@ const AssignTask = () => {
                 </tbody>
             </Table>
 
-            <Modal  show={show} onHide={handleClose}>
+            <Modal style={{width:"70%", padding:"0px"}}  show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Assign Task</Modal.Title>
                 </Modal.Header>
@@ -97,6 +97,7 @@ const AssignTask = () => {
                         <Form.Group controlId="formTaskTitle" >
                             <Form.Label>Task Title</Form.Label>
                             <Form.Control
+                            style={{width:"300px"}}
                                 type="text"
                                 placeholder="Enter task title"
                                 name="title" value={input.title} onChange={handleInput}
@@ -107,6 +108,7 @@ const AssignTask = () => {
                             <Form.Label>Task Description</Form.Label>
                             <Form.Control
                             as="textarea" rows={2}
+                            style={{width:"300px"}}
                                 type="text"
                                 placeholder="Enter task description"
                                 name="description" value={input.description} onChange={handleInput}
@@ -116,7 +118,7 @@ const AssignTask = () => {
                         <Form.Group controlId="formTimeDuration" className="mb-3">
                             <Form.Label>Time Duration (hours)</Form.Label>
                             <Form.Control
-                            className="hello1"
+                            style={{width:"300px"}}
                                 type="number"
                                 placeholder="Enter time duration"
                                 name="duration" value={input.duration} onChange={handleInput}
