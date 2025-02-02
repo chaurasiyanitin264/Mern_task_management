@@ -14,7 +14,7 @@ const Home = () => {
     if (usertype=="admin")
       {           
            try {
-            let api="http://localhost:8000/admin/admindata";
+            let api="https://taskmangemnt-system-1.onrender.com/admin/admindata";
             const response= await axios.post(api, {userid:userid, password:password});
             console.log(response.data);
             if (response.status==200)
@@ -34,7 +34,7 @@ const Home = () => {
         if(usertype=="user")
         {
           try {
-            let api="http://localhost:8000/user/userlogin";
+            let api="https://taskmangemnt-system-1.onrender.com/user/userlogin";
             const response=await axios.post(api,{userid:userid,password:password});
             // console.log(response.data)
            if(response.status==200)
