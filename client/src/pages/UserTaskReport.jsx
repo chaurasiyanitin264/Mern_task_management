@@ -74,7 +74,8 @@ const UserTaskReport=()=>{
     })
     return(
         <>
-        <Table striped bordered hover size="sm">
+        
+        <Table className="table-responsive" striped bordered hover size="sm">
       <thead>
         <tr>
           <th></th>
@@ -94,6 +95,7 @@ const UserTaskReport=()=>{
         {ans}
       </tbody>
       </Table>
+
         </>
     )
 }

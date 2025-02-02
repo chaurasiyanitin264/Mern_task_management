@@ -21,6 +21,11 @@ const ResetPassword = () => {
             let api = "http://localhost:8000/user/changepass";
             const response = await axios.post(api, { userid: userid, ...input });
             message.success(response.data.msg)
+            setInput({
+                oldpassword:"",
+                newpassword:"",
+                confirmpassword:""
+            })
         } catch (error) {
             message.error(error.response.data.msg)
         }
