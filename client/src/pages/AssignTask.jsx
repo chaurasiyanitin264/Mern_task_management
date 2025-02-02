@@ -71,9 +71,10 @@ const AssignTask = () => {
     });
 
     return (
-        <div className="card p-4 shadow-custom">
+        // <div className="card p-4 shadow-custom">
+        <>
             <Table  striped bordered hover >
-                <thead class="table-primary">
+                <thead class="table-primary" >
                     <tr>
                         <th></th>
                         <th>Emp Name</th>
@@ -92,11 +93,10 @@ const AssignTask = () => {
                     <Modal.Title>Assign Task</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form  >
-                        <Form.Group controlId="formTaskTitle">
+                    <Form >
+                        <Form.Group controlId="formTaskTitle" >
                             <Form.Label>Task Title</Form.Label>
                             <Form.Control
-                                
                                 type="text"
                                 placeholder="Enter task title"
                                 name="title" value={input.title} onChange={handleInput}
@@ -116,6 +116,7 @@ const AssignTask = () => {
                         <Form.Group controlId="formTimeDuration" className="mb-3">
                             <Form.Label>Time Duration (hours)</Form.Label>
                             <Form.Control
+                            className="hello1"
                                 type="number"
                                 placeholder="Enter time duration"
                                 name="duration" value={input.duration} onChange={handleInput}
@@ -131,7 +132,7 @@ const AssignTask = () => {
                 </Modal.Footer>
             </Modal>
 
-        </div>
+        </>
     );
 };
 

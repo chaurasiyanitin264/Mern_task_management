@@ -59,69 +59,31 @@ body {
 
 
 
-
 /* Assign task */
-/* Ensure the container adjusts properly */
-.card {
-    max-width: 100%;
-    overflow-x: auto;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
 
-/* Responsive table */
-.table-responsive {
-    overflow-x: auto;
-}
 
-/* Improve button spacing */
-.button-container {
-    display: flex;
-    justify-content: center;
-}
 
-/* Modal Responsiveness */
-.modal-content {
-    width: 100%;
-}
-
-/* Form input spacing */
-.form-group {
-    margin-bottom: 15px;
-}
-
-/* Responsive Font Sizes */
-@media (max-width: 768px) {
-    .table th, .table td {
-        font-size: 14px;
+/* Custom modal width for larger screens */
+@media (min-width: 1024px) {
+    .modal-dialog {
+      width: 50% !important; /* Adjust width to 50% for large screens */
+      max-width: none !important;
     }
-
-    .btn {
-        font-size: 14px;
-        padding: 6px 12px;
+  }
+  
+  /* For tablets and medium-sized screens */
+  @media (max-width: 1024px) {
+    .modal-dialog {
+      width: 70% !important; /* Adjust width to 70% */
+      max-width: none !important;
     }
-
-    .modal-title {
-        font-size: 18px;
+  }
+  
+  /* For smaller screens like mobile */
+  @media (max-width: 576px) {
+    .modal-dialog {
+      width: 90% !important; /* Adjust width to 90% */
+      max-width: none !important;
     }
-}
-
-@media (max-width: 576px) {
-    .table th, .table td {
-        font-size: 12px;
-    }
-
-    .btn {
-        font-size: 12px;
-        padding: 4px 8px;
-    }
-
-    .modal-title {
-        font-size: 16px;
-    }
-
-    .form-control {
-        font-size: 14px;
-    }
-}
-
+  }
+  
