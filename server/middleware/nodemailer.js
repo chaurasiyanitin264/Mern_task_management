@@ -3,7 +3,7 @@ const  transporter=nodemailer.createTransport({
     service:"gmail",
     auth:{
         user:"chaurasiyanitin264@gmail.com",
-        pass:""
+        pass:"fanj lwpc mhbn oilw"
     }
 })
 transporter.verify((error,success)=>
