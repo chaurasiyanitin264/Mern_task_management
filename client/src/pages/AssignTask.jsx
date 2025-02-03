@@ -89,7 +89,7 @@ const AssignTask = () => {
                     </tbody>
                 </Table>
 
-                <Modal style={{ width: "70%", padding: "0px" }} show={show} onHide={handleClose}>
+                <Modal style={{padding: "0px" }} show={show} onHide={handleClose}>
                     <Modal.Header closeButton>
                         <Modal.Title>Assign Task</Modal.Title>
                     </Modal.Header>
