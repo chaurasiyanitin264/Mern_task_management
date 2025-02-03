@@ -77,7 +77,7 @@ const UserTaskReport=()=>{
         <>
         
         <Table className="table-responsive" striped bordered hover size="sm">
-      <thead>
+     <thead  className="table-primary tablesize">
         <tr>
           <th></th>
           <th>#</th>

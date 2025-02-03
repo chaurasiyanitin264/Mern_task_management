@@ -88,11 +88,4 @@ body {
       max-width: none !important;
     }
   }
-  @media (min-width: 768px) {
-    .tablesize {
-     width: auto;
-     margin: 0px;
-     padding: 0px;
-    }
-  }
- 
+  
