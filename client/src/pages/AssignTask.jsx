@@ -74,7 +74,7 @@ const AssignTask = () => {
         // <div className="card p-4 shadow-custom">
         <>
             <Table  striped bordered hover >
-                <thead class="table-primary" >
+         <thead   className="table-primary tablesize">
                     <tr>
                         <th></th>
                         <th>Emp Name</th>
