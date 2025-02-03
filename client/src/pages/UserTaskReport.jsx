@@ -74,30 +74,30 @@ const UserTaskReport=()=>{
     })
   
     return(
-        <>
-        
-        <Table className="table-responsive" striped bordered hover size="sm">
-     <thead  className="table-primary tablesize">
-        <tr>
-          <th></th>
-          <th>#</th>
-          <th>Emp Name</th>
-          <th>Email</th>
-          <th>Designation</th>
-          <th>Title</th>
-          <th>Description</th>
-          <th>Duration</th>
-          <th>Status</th>
-          <th>Report</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        {ans}
-      </tbody>
-      </Table>
-
-        </>
-    )
+      <>
+      <div className="table-responsive">
+          <Table striped bordered hover size="sm">
+              <thead className="table-primary tablesize">
+                  <tr>
+                      <th></th>
+                      <th>#</th>
+                      <th>Emp Name</th>
+                      <th>Email</th>
+                      <th>Designation</th>
+                      <th>Title</th>
+                      <th>Description</th>
+                      <th>Duration</th>
+                      <th>Status</th>
+                      <th>Report</th>
+                      <th></th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {ans}
+              </tbody>
+          </Table>
+      </div>
+      </>
+  );
 }
 export default UserTaskReport;

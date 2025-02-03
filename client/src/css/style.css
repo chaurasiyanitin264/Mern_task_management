@@ -39,6 +39,14 @@ body {
   
     
 }
+
+@media (max-width: 768px) {
+  #div2{
+    margin: auto;
+    
+}
+
+}
 #create {
     padding: 10px;
 }
@@ -57,8 +65,19 @@ body {
 
 #div3{
     margin: auto;
+    padding: 10px;
     
 }
+
+@media (max-width: 768px) {
+  #div1{
+    display: block;
+    
+}
+
+}
+
+
 
 
 /* Assign task */

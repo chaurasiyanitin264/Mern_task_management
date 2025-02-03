@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 import { Modal, Button, Form, Table } from "react-bootstrap";
 const AssignTask = () => {
     const [mydata, setmydata] = useState([]);
-    const [input,setInput]=useState({});
-    const [empId,setEmpId]=useState("");
+    const [input, setInput] = useState({});
+    const [empId, setEmpId] = useState("");
 
     const [show, setShow] = useState(false);
 
@@ -15,29 +15,29 @@ const AssignTask = () => {
         setEmpId(empid);
         setShow(true);
     }
-    
 
 
-    const handleInput=(e)=>{
-        let name=e.target.name;
-        let value=e.target.value;
-        setInput(values=>({...values,[name]:value}));
+
+    const handleInput = (e) => {
+        let name = e.target.name;
+        let value = e.target.value;
+        setInput(values => ({ ...values, [name]: value }));
         console.log(input)
     }
 
-    const handleSubmit=async()=>{
-              try {
-                let api="https://taskmangemnt-system-1.onrender.com/admin/assigntask";
-                const response=await axios.post(api,{empid:empId,...input});
-                message.success("Task assign")
-                setInput({
-                    title:"",
-                    description:"",
-                    duration:""
-                })
-              } catch (error) {
-                console.log(error)
-              }
+    const handleSubmit = async () => {
+        try {
+            let api = "https://taskmangemnt-system-1.onrender.com/admin/assigntask";
+            const response = await axios.post(api, { empid: empId, ...input });
+            message.success("Task assign")
+            setInput({
+                title: "",
+                description: "",
+                duration: ""
+            })
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     const loadData = async () => {
@@ -54,7 +54,7 @@ const AssignTask = () => {
     useEffect(() => {
         loadData();
     }, []);
-    let sno=1;
+    let sno = 1;
     const ans = mydata.map((key) => {
         return (
             <tr key={key.id}>
@@ -63,7 +63,7 @@ const AssignTask = () => {
                 <td>{key.email}</td>
                 <td>{key.designation}</td>
                 <td>
-                    <Button variant="success" onClick={()=>{handleShow(key._id)}}>Assign</Button>
+                    <Button variant="success" onClick={() => { handleShow(key._id) }}>Assign</Button>
 
                 </td>
             </tr>
@@ -73,67 +73,68 @@ const AssignTask = () => {
     return (
         // <div className="card p-4 shadow-custom">
         <>
-            <Table  striped bordered hover >
-         <thead   className="table-primary tablesize">
-                    <tr>
-                        <th></th>
-                        <th>Emp Name</th>
-                        <th>Emp Email</th>
-                        <th>Designation</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {ans}
-                </tbody>
-            </Table>
+            <div className="table-responsive">
+                <Table striped bordered hover size="sm">
+                    <thead className="table-primary tablesize">
+                        <tr>
+                            <th></th>
+                            <th>Emp Name</th>
+                            <th>Emp Email</th>
+                            <th>Designation</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {ans}
+                    </tbody>
+                </Table>
 
-            <Modal style={{width:"70%", padding:"0px"}}  show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Assign Task</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Form >
-                        <Form.Group controlId="formTaskTitle" >
-                            <Form.Label>Task Title</Form.Label>
-                            <Form.Control
-                            style={{width:"300px"}}
-                                type="text"
-                                placeholder="Enter task title"
-                                name="title" value={input.title} onChange={handleInput}
-                            />
-                        </Form.Group>
+                <Modal style={{ width: "70%", padding: "0px" }} show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Assign Task</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form >
+                            <Form.Group controlId="formTaskTitle" >
+                                <Form.Label>Task Title</Form.Label>
+                                <Form.Control
+                                    style={{ width: "300px" }}
+                                    type="text"
+                                    placeholder="Enter task title"
+                                    name="title" value={input.title} onChange={handleInput}
+                                />
+                            </Form.Group>
 
-                        <Form.Group controlId="formTaskDescription" className="mb-3">
-                            <Form.Label>Task Description</Form.Label>
-                            <Form.Control
-                            as="textarea" rows={2}
-                            style={{width:"300px"}}
-                                type="text"
-                                placeholder="Enter task description"
-                                name="description" value={input.description} onChange={handleInput}
-                            />
-                        </Form.Group>
+                            <Form.Group controlId="formTaskDescription" className="mb-3">
+                                <Form.Label>Task Description</Form.Label>
+                                <Form.Control
+                                    as="textarea" rows={2}
+                                    style={{ width: "300px" }}
+                                    type="text"
+                                    placeholder="Enter task description"
+                                    name="description" value={input.description} onChange={handleInput}
+                                />
+                            </Form.Group>
 
-                        <Form.Group controlId="formTimeDuration" className="mb-3">
-                            <Form.Label>Time Duration (hours)</Form.Label>
-                            <Form.Control
-                            style={{width:"300px"}}
-                                type="number"
-                                placeholder="Enter time duration"
-                                name="duration" value={input.duration} onChange={handleInput}
-                            />
-                        </Form.Group>
-                    </Form>
-                </Modal.Body>
-                <Modal.Footer>
+                            <Form.Group controlId="formTimeDuration" className="mb-3">
+                                <Form.Label>Time Duration (hours)</Form.Label>
+                                <Form.Control
+                                    style={{ width: "300px" }}
+                                    type="number"
+                                    placeholder="Enter time duration"
+                                    name="duration" value={input.duration} onChange={handleInput}
+                                />
+                            </Form.Group>
+                        </Form>
+                    </Modal.Body>
+                    <Modal.Footer>
 
-                    <Button variant="primary" onClick={handleSubmit}>
-                        Save Task
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-
+                        <Button variant="primary" onClick={handleSubmit}>
+                            Save Task
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+            </div>
         </>
     );
 };

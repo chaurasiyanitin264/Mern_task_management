@@ -56,10 +56,7 @@ const Home = () => {
 
     <>
       {/* <h1> User Login!</h1> */}
-      <div
-        className="d-flex justify-content-center align-items-center vh-100"
-        
-      >
+      <div className="container-fluid d-flex justify-content-center align-items-center min-vh-100">
         <Card
           className="p-4 shadow"
           style={{

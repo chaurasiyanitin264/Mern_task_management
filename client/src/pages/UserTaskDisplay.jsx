@@ -89,9 +89,9 @@ const UserTaskDisplay = () => {
     return (
         <>
             {/* <h4>User Task:{userid}</h4> */}
-            <div className="card p-4 shadow-custom">
-                <Table striped bordered hover >
-                    <thead class="table-secondary">
+            <div className="table-responsive">
+          <Table striped bordered hover size="sm">
+              <thead className="table-primary tablesize">
                         <tr>
                             <th></th>
                             <th>Title</th>

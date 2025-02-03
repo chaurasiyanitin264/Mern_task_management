@@ -12,7 +12,6 @@ const Footer = () => {
       className="text-center text-white"
       style={{
         background: '#4ca1af',
-        margin: '10px',
       }}
     >
       <MDBContainer className="p-4 pb-0">
