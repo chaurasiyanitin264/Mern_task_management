@@ -19,8 +19,8 @@ const Home = () => {
 
     const apiUrl =
       usertype === "admin"
-        ? "http://localhost:8000/admin/admindata"
-        : "http://localhost:8000/user/userlogin";
+        ? "https://mern-task-management-4lk3.onrender.com/admin/admindata"
+        : "https://mern-task-management-4lk3.onrender.com/user/userlogin";
 
     try {
       const response = await axios.post(apiUrl, { userid, password });

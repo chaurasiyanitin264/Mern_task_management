@@ -27,7 +27,7 @@ const AssignTask = () => {
 
     const handleSubmit = async () => {
         try {
-            let api = "http://localhost:8000/admin/assigntask";
+            let api = "https://mern-task-management-4lk3.onrender.com/admin/assigntask";
             const response = await axios.post(api, { empid: empId, ...input });
             message.success("Task assign")
             setInput({
@@ -42,7 +42,7 @@ const AssignTask = () => {
 
     const loadData = async () => {
         try {
-            let api = "http://localhost:8000/admin/assigntaskdisplay";
+            let api = "https://mern-task-management-4lk3.onrender.com/admin/assigntaskdisplay";
             const response = await axios.get(api);
             // console.log(response.data);
             setmydata(response.data);

@@ -8,6 +8,7 @@ const CreateUser = () => {
         name: "",
         email: "",
         designation: ""
+
     });
     const [uploadImage, setUploadImage] = useState(null);
 
@@ -33,13 +34,13 @@ const CreateUser = () => {
                 formData.append("cloud_name", "dtwwlicj1");
 
                 const response = await axios.post(
-                    "https://api.cloudinary.com/v1_1/dtwwlicj1/image/upload",
+                    "https://mern-task-management-4lk3.onrender.com/image/upload",
                     formData
                 );
                 imageUrl = response.data.url;
             }
 
-            const api = "http://localhost:8000/admin/usercreate";
+            const api = "https://mern-task-management-4lk3.onrender.com/admin/usercreate";
             const userResponse = await axios.post(api, {
                 userProfile: imageUrl,
                 ...input
