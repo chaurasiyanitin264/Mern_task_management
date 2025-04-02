@@ -8,7 +8,7 @@ import { message } from "antd";
 const UserTaskReport=()=>{
     const [mydata,setMydata]=useState([]);
     const loadData=async()=>{
-        let api="https://taskmangemnt-system-1.onrender.com/admin/usertaskdisplay"
+        let api="http://localhost:8000/admin/usertaskdisplay"
         try {
             const response=await axios.get(api);
             setMydata(response.data);
@@ -24,7 +24,7 @@ const UserTaskReport=()=>{
 
   const reassignTask=async(taskid)=>{
     try {
-        let api="https://taskmangemnt-system-1.onrender.com/admin/reasigntask";
+        let api="http://localhost:8000/admin/reasigntask";
         const response=await axios.post(api,{taskid:taskid});
         message.success(response.data.msg)
         loadData();

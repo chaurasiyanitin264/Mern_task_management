@@ -12,7 +12,7 @@ const adminLogin=async(req, res)=>{
     // console.log(password)
     try {
         const Admin = await AdminModel.findOne({userid:userid});
-        
+        console.log(Admin)
         if (!Admin)
         {
             res.status(400).json({msg:"Invalid user Id"});
@@ -32,7 +32,7 @@ const adminLogin=async(req, res)=>{
 
 const UserCreate=async(req,res)=>{
 // console.log(req.body);
-const {name,email,designation}=req.body;
+const {name,email,designation,userProfile}=req.body;
 const myPass= randomPassword();
 const mailOptions={
     from:"chaurasiyanitin264@gmail.com",
@@ -48,7 +48,8 @@ try {
         name:name,
         email:email,
         designation:designation,
-        password:myPass
+        password:myPass,
+        userProfile:userProfile
     })
     res.status(200).json({success:true,message:'email sent',info});
 } catch (error) {
