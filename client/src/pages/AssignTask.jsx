@@ -73,7 +73,7 @@ const AssignTask = () => {
     return (
         // <div className="card p-4 shadow-custom">
         <>
-            <div className="table-responsive">
+            <div className="table-responsive" style={{overflow:"scroll"}}>
                 <Table striped bordered hover size="sm">
                     <thead className="table-primary tablesize">
                         <tr>
