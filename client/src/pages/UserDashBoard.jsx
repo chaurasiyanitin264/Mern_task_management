@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, Outlet } from "react-router-dom";
-import "../pages/AdminDashBoard.css";
+import "../pages/Admin.css";
 
 
 const UserDashBoard = () => {
