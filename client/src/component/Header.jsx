@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Header.css";
-import logo from "../img/Screenshot_2025-04-02_151548-removebg-preview.png"
+
 const Header = () => {
     const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
