@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { Form, Button, Card, InputGroup } from "react-bootstrap";
+import { Form, Button, Card, InputGroup, Container, Row, Col } from "react-bootstrap";
 import axios from "axios";
 import { message } from "antd";
-
 import WEB_URL from "../config";
 
 const CreateUser = () => {
@@ -27,10 +26,8 @@ const CreateUser = () => {
 
     const handleSubmit = async () => {
         try {
-            let imageUrl = ""; // Image URL blank rakha hai
-
-            // Cloudinary upload code commented
-          
+            let imageUrl = ""; // Default image URL blank rakha hai
+            
             if (uploadImage) {
                 const formData = new FormData();
                 formData.append("file", uploadImage);
@@ -43,11 +40,10 @@ const CreateUser = () => {
                 );
                 imageUrl = response.data.secure_url;
             }
-  
 
             const api = `${WEB_URL}/admin/usercreate`;
             const userResponse = await axios.post(api, {
-                userProfile: imageUrl, // Ye blank rahega agar image upload nahi kar rahe
+                userProfile: imageUrl,
                 ...input
             });
 
@@ -65,48 +61,70 @@ const CreateUser = () => {
     };
 
     return (
-        <div className="d-flex justify-content-center align-items-center ">
-            <Card className="card p-4 shadow-custom" style={{ width: "400px", borderRadius: "10px", border: "1px solid #4ca1af", marginTop: "70px" }}>
-                <h2 className="text-center mb-3">Create New Employee</h2>
-                <Form>
-                    <Form.Group className="mb-3">
-                        <Form.Label className="fw-bold">Employee Name</Form.Label>
-                        <InputGroup>
-                            <Form.Control type="text" placeholder="Enter Employee Name" name="name" value={input.name} onChange={handleInput} />
-                        </InputGroup>
-                    </Form.Group>
+        <Container className="d-flex justify-content-center align-items-center" style={{ minHeight: "100vh" }}>
+            <Row className="w-100">
+                <Col xs={12} sm={10} md={8} lg={6} className="mx-auto">
+                    <Card 
+                        className="shadow p-4"
+                        style={{
+                            borderRadius: "12px",
+                            border: "1px solid #4ca1af",
+                            background: "#fff"
+                        }}
+                    >
+                        <h2 className="text-center mb-3">Create New Employee</h2>
+                        <Form>
+                            <Form.Group className="mb-3">
+                                <Form.Label className="fw-bold">Employee Name</Form.Label>
+                                <InputGroup>
+                                    <Form.Control 
+                                        type="text" 
+                                        placeholder="Enter Employee Name" 
+                                        name="name" 
+                                        value={input.name} 
+                                        onChange={handleInput} 
+                                    />
+                                </InputGroup>
+                            </Form.Group>
 
-                    <Form.Group className="mb-3">
-                        <Form.Label className="fw-bold">Employee Email</Form.Label>
-                        <InputGroup>
-                            <Form.Control type="email" placeholder="Enter Employee Email" name="email" value={input.email} onChange={handleInput} />
-                        </InputGroup>
-                    </Form.Group>
+                            <Form.Group className="mb-3">
+                                <Form.Label className="fw-bold">Employee Email</Form.Label>
+                                <InputGroup>
+                                    <Form.Control 
+                                        type="email" 
+                                        placeholder="Enter Employee Email" 
+                                        name="email" 
+                                        value={input.email} 
+                                        onChange={handleInput} 
+                                    />
+                                </InputGroup>
+                            </Form.Group>
 
-                    <Form.Group className="mb-3">
-                        <Form.Label className="fw-bold">Designation</Form.Label>
-                        <Form.Select name="designation" value={input.designation} onChange={handleInput}>
-                            <option value="">Choose Designation</option>
-                            <option value="Frontend">Frontend</option>
-                            <option value="Backend">Backend</option>
-                            <option value="Python">Python</option>
-                            <option value="Java">Java</option>
-                            <option value="Graphic Designer">Graphic Designer</option>
-                        </Form.Select>
-                    </Form.Group>
+                            <Form.Group className="mb-3">
+                                <Form.Label className="fw-bold">Designation</Form.Label>
+                                <Form.Select name="designation" value={input.designation} onChange={handleInput}>
+                                    <option value="">Choose Designation</option>
+                                    <option value="Frontend">Frontend</option>
+                                    <option value="Backend">Backend</option>
+                                    <option value="Python">Python</option>
+                                    <option value="Java">Java</option>
+                                    <option value="Graphic Designer">Graphic Designer</option>
+                                </Form.Select>
+                            </Form.Group>
 
-                    {/* File Upload Code ko hata diya kyunki Cloudinary use nahi ho raha */}
-                    
-                    <Form.Group className="mb-3">
-                        <Form.Label>Upload Profile Picture</Form.Label>
-                        <Form.Control type="file" onChange={handleImage} />
-                    </Form.Group>
-                   
+                            <Form.Group className="mb-3">
+                                <Form.Label>Upload Profile Picture</Form.Label>
+                                <Form.Control type="file" onChange={handleImage} />
+                            </Form.Group>
 
-                    <Button variant="primary" className="w-100" onClick={handleSubmit}>Create Employee</Button>
-                </Form>
-            </Card>
-        </div>
+                            <Button variant="primary" className="w-100" onClick={handleSubmit}>
+                                Create Employee
+                            </Button>
+                        </Form>
+                    </Card>
+                </Col>
+            </Row>
+        </Container>
     );
 };
 

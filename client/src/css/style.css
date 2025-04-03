@@ -56,8 +56,15 @@ body {
       max-width: none !important;
     }
   }
+
+    @media (max-width: 576px) {
+    .modal-dialog {
+      width: 90% !important; 
+      max-width: none !important;
+    }
+  }
   
 
 
 
-  
+ 

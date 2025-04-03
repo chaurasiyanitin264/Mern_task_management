@@ -22,12 +22,12 @@ const Header = () => {
             {adminName || adminProfile || username || userProfile ? (
                 <header className="header-gradient">
                     <div className="brand">
-                        {/* <h3 className="brand-title">Task Management</h3> */}
+                        <h3 className="brand-title">Task Management</h3>
                         
                     </div>
                     <div className="user-section">
 
-                    <span className="user-name-display">{adminName || username}</span>
+                    {/* <span className="user-name-display">{adminName || username}</span> */}
                         {(adminProfile && adminProfile !== "null" && adminProfile !== "") || (userProfile && userProfile !== "null" && userProfile !== "") ? (
                             <img
                                 src={adminProfile || userProfile}
@@ -50,9 +50,13 @@ const Header = () => {
             {/* Modal */}
             {showModal && (
                 <div
-                    className="modal-backdrop"
+                
+                    className="modal-backdrop" 
                     onClick={() => setShowModal(false)}
                 >
+                     <div>
+                     <span className="user-name-display">{adminName || username}</span>
+                     </div>
                     <div
                         className="modal-content"
                         onClick={(e) => e.stopPropagation()}

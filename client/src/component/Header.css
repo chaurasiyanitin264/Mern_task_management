@@ -3,7 +3,6 @@ body {
 }
 .header-container {
     width: 100%;
-
 }
 
 .header-gradient {
@@ -12,10 +11,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* padding: 15px 25px; */
     padding: 5px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    /* position: fixed;  */
     width: 100%; /* Full width */
     top: 0; /* Stick to the top */
     left: 0;
@@ -34,7 +31,9 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.5px;
     margin-left: 285px;
+    margin-top: 15px;
 }
+
 .user-section {
     display: flex;
     align-items: center;
@@ -69,6 +68,7 @@ body {
     justify-content: center;
     align-items: flex-start;
     z-index: 1000;
+    background-color: white;
 }
 
 .modal-content {
@@ -164,17 +164,17 @@ body {
 @media (max-width: 575px) {
     .header-gradient {
         padding: 10px;
-        gap: 150px;
     }
     
     .brand-title {
-        font-size: 1.1rem;
+        font-size: 0.9rem;
         text-align: center;
-        margin-left: 50px;
+        margin-left: 70px;
+        margin-top: 10px;
+        
     }
     
     .user-section {
-        /* width: 100%; */
         justify-content: center;
     }
     

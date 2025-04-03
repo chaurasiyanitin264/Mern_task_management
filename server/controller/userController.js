@@ -28,25 +28,16 @@ const UserTaskdisplay = async (req, res) => {
     try {
         const tasks = await taskModel.find({ empid: id });
         if (!tasks.length) {
-            return res.status(404).send({ msg: "No tasks found for this user" });
+            return res.status(404).json({ msg: "No tasks found for this user" });
         }
-        res.status(200).send(tasks);
+        res.status(200).json(tasks);
     } catch (error) {
         console.error("Task Fetch Error:", error);
-        res.status(500).send({ msg: "Internal Server Error" });
+        res.status(500).json({ msg: "Internal Server Error" });
     }
-    // // console.log(req.body);
-    // const { id } = req.body;
-    // try {
-    //     const TaskDisplay = await taskModel.find({ empid: id });
-    //     console.log(TaskDisplay);
-    //     res.status(200).send(TaskDisplay)
-    // } catch (error) {
-    //     console.log(error)
-    // }
 }
 const UserTaskSubmit=async(req,res)=>{
-    console.log(req.body);
+    // console.log(req.body);
     const { taskid, taskstatus }=req.body;
     try {
         const TaskSubmit=await taskModel.findByIdAndUpdate(taskid,{taskstatus:taskstatus,empreport:"submited"});
