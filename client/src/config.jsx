@@ -1,2 +1,2 @@
-const WEB_URL="http://localhost:8000";
+const WEB_URL="https://mern-task-management-2.onrender.com";
 export default WEB_URL;
