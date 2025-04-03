@@ -2,6 +2,7 @@ import { message } from "antd";
 import axios from "axios";
 import { useEffect, useState } from "react";
 // import Table from 'react-bootstrap/Table';
+import WEB_URL from "../config"
 import { Modal, Button, Form, Table } from "react-bootstrap";
 const AssignTask = () => {
     const [mydata, setmydata] = useState([]);
@@ -27,7 +28,7 @@ const AssignTask = () => {
 
     const handleSubmit = async () => {
         try {
-            let api = "https://mern-task-management-4lk3.onrender.com/admin/assigntask";
+            let api = `${WEB_URL}/admin/assigntask`;
             const response = await axios.post(api, { empid: empId, ...input });
             message.success("Task assign")
             setInput({
@@ -42,7 +43,7 @@ const AssignTask = () => {
 
     const loadData = async () => {
         try {
-            let api = "https://mern-task-management-4lk3.onrender.com/admin/assigntaskdisplay";
+            let api = `${WEB_URL}/admin/assigntaskdisplay`;
             const response = await axios.get(api);
             // console.log(response.data);
             setmydata(response.data);

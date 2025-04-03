@@ -4,7 +4,7 @@ import { Form, Button, Card, InputGroup } from "react-bootstrap";
 import axios from "axios";
 import { message } from "antd";
 import { useNavigate } from "react-router-dom";
-
+import WEB_URL from "../config";
 const Home = () => {
   const [userid, setUserId] = useState("");
   const [password, setPassword] = useState("");
@@ -19,8 +19,8 @@ const Home = () => {
 
     const apiUrl =
       usertype === "admin"
-        ? "https://mern-task-management-4lk3.onrender.com/admin/admindata"
-        : "https://mern-task-management-4lk3.onrender.com/user/userlogin";
+        ? `${WEB_URL}/admin/admindata`
+        : `${WEB_URL}/user/userlogin`;
 
     try {
       const response = await axios.post(apiUrl, { userid, password });

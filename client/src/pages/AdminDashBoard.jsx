@@ -4,24 +4,15 @@ import "../pages/Admin.css";
 
 const DashBoard = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(true);
-  
-  // Handle window resize to automatically adjust sidebar visibility
+
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth <= 768) {
-        setSidebarOpen(false);
-      } else {
-        setSidebarOpen(true);
-      }
+      setSidebarOpen(window.innerWidth > 768);
     };
 
-    // Set initial state based on window size
     handleResize();
-    
-    // Add event listener
     window.addEventListener("resize", handleResize);
     
-    // Clean up
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
@@ -31,7 +22,6 @@ const DashBoard = () => {
 
   return (
     <div className="dashboard-wrapper">
-      {/* Sidebar toggle button for mobile */}
       <button 
         className="sidebar-toggle"
         onClick={toggleSidebar}
@@ -84,7 +74,6 @@ const DashBoard = () => {
         </main>
       </div>
       
-      {/* Overlay for mobile view */}
       {isSidebarOpen && window.innerWidth <= 768 && (
         <div className="sidebar-overlay" onClick={() => setSidebarOpen(false)}></div>
       )}

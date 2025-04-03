@@ -63,7 +63,7 @@ const UserDashBoard = () => {
                       className="nav-link"
                       onClick={() => window.innerWidth <= 768 && setSidebarOpen(false)}
                     >
-                      Assign Task
+                      Change Password
                     </Link>
                   </li>
               

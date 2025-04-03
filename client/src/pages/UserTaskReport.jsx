@@ -5,10 +5,11 @@ import rightimg from "../img/right.png";
 import pendingimg from "../img/pending.jpg";
 import Button from 'react-bootstrap/Button';
 import { message } from "antd";
+import WEB_URL from "../config";
 const UserTaskReport=()=>{
     const [mydata,setMydata]=useState([]);
     const loadData=async()=>{
-        let api="http://localhost:8000/admin/usertaskdisplay"
+        let api=`${WEB_URL}/admin/usertaskdisplay`
         try {
             const response=await axios.get(api);
             setMydata(response.data);
@@ -24,7 +25,7 @@ const UserTaskReport=()=>{
 
   const reassignTask=async(taskid)=>{
     try {
-        let api="http://localhost:8000/admin/reasigntask";
+        let api=`${WEB_URL}/admin/reasigntask`;
         const response=await axios.post(api,{taskid:taskid});
         message.success(response.data.msg)
         loadData();

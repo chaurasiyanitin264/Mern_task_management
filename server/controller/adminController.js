@@ -32,32 +32,35 @@ const adminLogin=async(req, res)=>{
 
 const UserCreate=async(req,res)=>{
 // console.log(req.body);
-const {name,email,designation,userProfile}=req.body;
-const myPass= randomPassword();
-const mailOptions={
-    from:"chaurasiyanitin264@gmail.com",
-    to:email,
-    subject:"Your Company Work Detail Account",                     // Email subject
-    text:`Dear ${name} Your Account created with password : ${myPass} 
-     You can login using with your Email account
-    `
-};
-try {
-    const info=await transporter.sendMail(mailOptions);
-    const userdata= await UserModel.create({
-        name:name,
-        email:email,
-        designation:designation,
-        password:myPass,
-        userProfile:userProfile
-    })
-    res.status(200).json({success:true,message:'email sent',info});
-} catch (error) {
-    console.error('Error sending email:', error);
-    res.status(500).json({ success: false, error: error.message });
+const { name, email, designation, userProfile } = req.body;
+    const myPass = randomPassword();
+
+    try {
+        const newUser = await UserModel.create({
+            name,
+            email,
+            designation,
+            password: myPass,
+            userProfile
+        });
+
+        const mailOptions = {
+            from: "your-email@gmail.com",
+            to: email,
+            subject: "Your Company Work Detail Account",
+            text: `Dear ${name}, Your Account has been created with password: ${myPass}. You can login using your Email account.`
+        };
+
+        await transporter.sendMail(mailOptions);
+        res.status(200).json({ success: true, message: "User Created & Email Sent!", user: newUser });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, error: error.message });
+    }
 }
 
-}
+
+
 
 const TaskReceve=async(req,res)=>{
    

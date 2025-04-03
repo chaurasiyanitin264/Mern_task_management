@@ -24,24 +24,26 @@ const userLogin = async (req, res) => {
 
 const UserTaskdisplay = async (req, res) => {
     // // console.log(req.query)
-    // const { id } = req.query;
-    // try {
-
-    //     const Task = await taskModel.find({ empid: id });
-    //     res.status(200).send(Task);
-
-    // } catch (error) {
-    //     console.log(error);
-    // }
-    // console.log(req.body);
-    const { id } = req.body;
+    const { id } = req.query;
     try {
-        const TaskDisplay = await taskModel.find({ empid: id });
-        console.log(TaskDisplay);
-        res.status(200).send(TaskDisplay)
+        const tasks = await taskModel.find({ empid: id });
+        if (!tasks.length) {
+            return res.status(404).send({ msg: "No tasks found for this user" });
+        }
+        res.status(200).send(tasks);
     } catch (error) {
-        console.log(error)
+        console.error("Task Fetch Error:", error);
+        res.status(500).send({ msg: "Internal Server Error" });
     }
+    // // console.log(req.body);
+    // const { id } = req.body;
+    // try {
+    //     const TaskDisplay = await taskModel.find({ empid: id });
+    //     console.log(TaskDisplay);
+    //     res.status(200).send(TaskDisplay)
+    // } catch (error) {
+    //     console.log(error)
+    // }
 }
 const UserTaskSubmit=async(req,res)=>{
     console.log(req.body);

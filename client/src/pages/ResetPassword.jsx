@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Form, Button, Card, InputGroup } from "react-bootstrap";
 import axios from "axios";
 import { message } from "antd"
+import WEB_URL from "../config";
 const ResetPassword = () => {
     const [input, setInput] = useState({});
     const [userid, setUserId] = useState("");
@@ -18,7 +19,7 @@ const ResetPassword = () => {
     }
     const handleSubmit = async (changepass) => {
         try {
-            let api = "https://mern-task-management-4lk3.onrender.com/user/changepass";
+            let api = `${WEB_URL}/user/changepass`;
             const response = await axios.post(api, { userid: userid, ...input });
             message.success(response.data.msg)
             setInput({
