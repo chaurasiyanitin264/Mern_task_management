@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { Form, Button, Card, InputGroup, Container, Row, Col } from "react-bootstrap";
 import axios from "axios";
-import { message } from "antd";
 import WEB_URL from "../config";
+import '../pages/createUser.css'
 
 const CreateUser = () => {
     const [input, setInput] = useState({
@@ -11,11 +10,20 @@ const CreateUser = () => {
         designation: ""
     });
     const [uploadImage, setUploadImage] = useState(null);
+    const [previewImage, setPreviewImage] = useState(null);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [message, setMessage] = useState({ type: "", content: "" });
 
     const handleImage = (e) => {
         const file = e.target.files[0];
         if (file) {
             setUploadImage(file);
+            // Create preview URL
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setPreviewImage(reader.result);
+            };
+            reader.readAsDataURL(file);
         }
     };
 
@@ -24,9 +32,20 @@ const CreateUser = () => {
         setInput((prev) => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        
+        // Basic validation
+        if (!input.name || !input.email || !input.designation) {
+            setMessage({ type: "error", content: "Please fill all required fields" });
+            return;
+        }
+
+        setIsSubmitting(true);
+        setMessage({ type: "", content: "" });
+
         try {
-            let imageUrl = ""; // Default image URL blank rakha hai
+            let imageUrl = ""; // Default image URL
             
             if (uploadImage) {
                 const formData = new FormData();
@@ -48,83 +67,136 @@ const CreateUser = () => {
             });
 
             if (userResponse.status === 201 || userResponse.status === 200) {
-                message.success("User Successfully Created!");
+                setMessage({ type: "success", content: "User Successfully Created!" });
                 setInput({ name: "", email: "", designation: "" });
                 setUploadImage(null);
+                setPreviewImage(null);
             } else {
-                message.error("Failed to create user.");
+                setMessage({ type: "error", content: "Failed to create user." });
             }
         } catch (error) {
             console.error(error);
-            message.error("Something went wrong. Please try again.");
+            setMessage({ type: "error", content: "Something went wrong. Please try again." });
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
     return (
-        <Container className="d-flex justify-content-center align-items-center" style={{ minHeight: "100vh" }}>
-            <Row className="w-100">
-                <Col xs={12} sm={10} md={8} lg={6} className="mx-auto">
-                    <Card 
-                        className="shadow p-4"
-                        style={{
-                            borderRadius: "12px",
-                            border: "1px solid #4ca1af",
-                            background: "#fff"
-                        }}
-                    >
-                        <h2 className="text-center mb-3">Create New Employee</h2>
-                        <Form>
-                            <Form.Group className="mb-3">
-                                <Form.Label className="fw-bold">Employee Name</Form.Label>
-                                <InputGroup>
-                                    <Form.Control 
-                                        type="text" 
-                                        placeholder="Enter Employee Name" 
-                                        name="name" 
-                                        value={input.name} 
-                                        onChange={handleInput} 
+        <div className="create-user-container">
+            <div className="form-card">
+                <div className="form-header">
+                    <h2>Create New Employee</h2>
+                    <p>Add a new employee to the task management system</p>
+                </div>
+
+                {message.content && (
+                    <div className={`alert ${message.type === "success" ? "alert-success" : "alert-error"}`}>
+                        {message.content}
+                    </div>
+                )}
+
+                <form onSubmit={handleSubmit}>
+                    <div className="form-layout">
+                        <div className="form-left">
+                            <div className="form-group">
+                                <label htmlFor="name">Employee Name <span className="required">*</span></label>
+                                <div className="input-group">
+                                    <i className="input-icon user-icon"></i>
+                                    <input
+                                        type="text"
+                                        id="name"
+                                        name="name"
+                                        placeholder="Enter Employee Name"
+                                        value={input.name}
+                                        onChange={handleInput}
+                                        required
                                     />
-                                </InputGroup>
-                            </Form.Group>
+                                </div>
+                            </div>
 
-                            <Form.Group className="mb-3">
-                                <Form.Label className="fw-bold">Employee Email</Form.Label>
-                                <InputGroup>
-                                    <Form.Control 
-                                        type="email" 
-                                        placeholder="Enter Employee Email" 
-                                        name="email" 
-                                        value={input.email} 
-                                        onChange={handleInput} 
+                            <div className="form-group">
+                                <label htmlFor="email">Employee Email <span className="required">*</span></label>
+                                <div className="input-group">
+                                    <i className="input-icon email-icon"></i>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        placeholder="Enter Employee Email"
+                                        value={input.email}
+                                        onChange={handleInput}
+                                        required
                                     />
-                                </InputGroup>
-                            </Form.Group>
+                                </div>
+                            </div>
 
-                            <Form.Group className="mb-3">
-                                <Form.Label className="fw-bold">Designation</Form.Label>
-                                <Form.Select name="designation" value={input.designation} onChange={handleInput}>
-                                    <option value="">Choose Designation</option>
-                                    <option value="Frontend">Frontend</option>
-                                    <option value="Backend">Backend</option>
-                                    <option value="Python">Python</option>
-                                    <option value="Java">Java</option>
-                                    <option value="Graphic Designer">Graphic Designer</option>
-                                </Form.Select>
-                            </Form.Group>
+                            <div className="form-group">
+                                <label htmlFor="designation">Designation <span className="required">*</span></label>
+                                <div className="input-group">
+                                    <i className="input-icon job-icon"></i>
+                                    <select
+                                        id="designation"
+                                        name="designation"
+                                        value={input.designation}
+                                        onChange={handleInput}
+                                        required
+                                    >
+                                        <option value="">Choose Designation</option>
+                                        <option value="Frontend">Frontend</option>
+                                        <option value="Backend">Backend</option>
+                                        <option value="Python">Python</option>
+                                        <option value="Java">Java</option>
+                                        <option value="Graphic Designer">Graphic Designer</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
 
-                            <Form.Group className="mb-3">
-                                <Form.Label>Upload Profile Picture</Form.Label>
-                                <Form.Control type="file" onChange={handleImage} />
-                            </Form.Group>
+                        <div className="form-right">
+                            <div className="profile-upload">
+                                <div className="profile-preview">
+                                    {previewImage ? (
+                                        <img src={previewImage} alt="Profile preview" className="preview-image" />
+                                    ) : (
+                                        <div className="preview-placeholder">
+                                            <i className="upload-icon"></i>
+                                            <span>Profile Photo</span>
+                                        </div>
+                                    )}
+                                </div>
+                                <div className="upload-controls">
+                                    <label htmlFor="profile-upload" className="upload-button">
+                                    <span className="required">*</span>  Choose Image
+                                    </label>
+                                    <input
+                                        type="file"
+                                        id="profile-upload"
+                                        accept="image/*"
+                                        onChange={handleImage}
+                                        className="file-input"
+                                        required
+                                    />
+                                    {uploadImage && (
+                                        <span className="file-name">{uploadImage.name}</span>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                            <Button variant="primary" className="w-100" onClick={handleSubmit}>
-                                Create Employee
-                            </Button>
-                        </Form>
-                    </Card>
-                </Col>
-            </Row>
-        </Container>
+                    <div className="form-actions">
+                        <button
+                            type="submit"
+                            className="submit-button"
+                            disabled={isSubmitting}
+                        >
+                            {isSubmitting ? "Creating..." : "Create Employee"}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
     );
 };
 

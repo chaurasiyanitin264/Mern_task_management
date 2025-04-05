@@ -23,20 +23,27 @@ const Header = () => {
                 <header className="header-gradient">
                     <div className="brand">
                         <h3 className="brand-title">Task Management</h3>
-                        
                     </div>
                     <div className="user-section">
-
-                    {/* <span className="user-name-display">{adminName || username}</span> */}
-                        {(adminProfile && adminProfile !== "null" && adminProfile !== "") || (userProfile && userProfile !== "null" && userProfile !== "") ? (
-                            <img
-                                src={adminProfile || userProfile}
-                                alt="Profile"
-                                className="profile-image"
+                        <span className="user-name-display">{adminName || username}</span>
+                        {(adminProfile && adminProfile !== "null" && adminProfile !== "") || 
+                         (userProfile && userProfile !== "null" && userProfile !== "") ? (
+                            <div className="profile-container">
+                                <img
+                                    src={adminProfile || userProfile}
+                                    alt="Profile"
+                                    className="profile-image"
+                                    onClick={() => setShowModal(!showModal)}
+                                />
+                            </div>
+                        ) : (
+                            <div 
+                                className="profile-placeholder"
                                 onClick={() => setShowModal(!showModal)}
-                            />
-                        ) : null}
-                       
+                            >
+                                {(adminName || username) ? (adminName || username).charAt(0).toUpperCase() : "U"}
+                            </div>
+                        )}
                     </div>
                 </header>
             ) : (
@@ -50,21 +57,34 @@ const Header = () => {
             {/* Modal */}
             {showModal && (
                 <div
-                
-                    className="modal-backdrop" 
+                    className="modal-backdrop"
                     onClick={() => setShowModal(false)}
                 >
-                     <div>
-                     <span className="user-name-display">{adminName || username}</span>
-                     </div>
-                    <div
+                    <div 
                         className="modal-content"
                         onClick={(e) => e.stopPropagation()}
-                        style={{width:"150px"}}
                     >
-                        <button onClick={logout} className="logout-button">
-                            Logout
-                        </button>
+                        <div className="modal-header">
+                            {(adminProfile && adminProfile !== "null" && adminProfile !== "") || 
+                             (userProfile && userProfile !== "null" && userProfile !== "") ? (
+                                <img
+                                    src={adminProfile || userProfile}
+                                    alt="Profile"
+                                    className="modal-profile-image"
+                                />
+                            ) : (
+                                <div className="modal-profile-placeholder">
+                                    {(adminName || username) ? (adminName || username).charAt(0).toUpperCase() : "U"}
+                                </div>
+                            )}
+                            <h4 className="modal-username">{adminName || username}</h4>
+                        </div>
+                        <div className="modal-options">
+                            <button onClick={logout} className="logout-button">
+                                <i className="logout-icon"></i>
+                                Logout
+                            </button>
+                        </div>
                     </div>
                 </div>
             )}

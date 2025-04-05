@@ -22,8 +22,8 @@ const DashBoard = () => {
 
   return (
     <div className="dashboard-wrapper">
-      <button 
-        className="sidebar-toggle"
+      <button
+        className={`sidebar-toggle ${isSidebarOpen ? 'active' : ''}`}
         onClick={toggleSidebar}
         aria-label="Toggle Sidebar"
       >
@@ -34,34 +34,40 @@ const DashBoard = () => {
 
       <div className={`dashboard-container ${isSidebarOpen ? 'sidebar-open' : 'sidebar-closed'}`}>
         <aside className={`sidebar ${isSidebarOpen ? 'open' : 'closed'}`}>
+          <div className="sidebar-header">
+            <h3>Dashboard</h3>
+          </div>
           <nav className="navbar">
             <div className="nav-container">
               <ul className="nav-links">
                 <li>
-                  <Link 
-                    to="createuser" 
+                  <Link
+                    to="createuser"
                     className="nav-link"
                     onClick={() => window.innerWidth <= 768 && setSidebarOpen(false)}
                   >
-                    Create User
+                    <i className="nav-icon user-icon"></i>
+                    <span>Create User</span>
                   </Link>
                 </li>
                 <li>
-                  <Link 
-                    to="assigntask" 
+                  <Link
+                    to="assigntask"
                     className="nav-link"
                     onClick={() => window.innerWidth <= 768 && setSidebarOpen(false)}
                   >
-                    Assign Task
+                    <i className="nav-icon task-icon"></i>
+                    <span>Assign Task</span>
                   </Link>
                 </li>
                 <li>
-                  <Link 
-                    to="usertaskreport" 
+                  <Link
+                    to="usertaskreport"
                     className="nav-link"
                     onClick={() => window.innerWidth <= 768 && setSidebarOpen(false)}
                   >
-                    Task Report
+                    <i className="nav-icon report-icon"></i>
+                    <span>Task Report</span>
                   </Link>
                 </li>
               </ul>
